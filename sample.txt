@@ -1,0 +1,6 @@
+
+Machine learning is a branch of artificial intelligence.
+It allows computers to learn from data without being explicitly programmed.
+There are three types: supervised, unsupervised, and reinforcement learning.
+Neural networks are inspired by the human brain.
+Deep learning uses many layers of neural networks.

@@ -5,13 +5,12 @@ import pdfplumber
 from sentence_transformers import SentenceTransformer
 from groq import Groq
 
-# ── Page config ──
 st.set_page_config(page_title="RAG Chatbot", page_icon="🧠", layout="wide")
 
 st.title("🧠 RAG Chatbot")
 st.caption("Upload a document and ask questions about it")
 
-# ── Sidebar ──
+# Sidebar 
 with st.sidebar:
     st.header("⚙️ Setup")
     api_key = st.secrets["GROQ_API_KEY"]
@@ -26,7 +25,7 @@ with st.sidebar:
         else:
             with st.spinner("Processing document..."):
 
-                # ── Load file ──
+                # Load file 
                 if uploaded_file.name.endswith(".pdf"):
                     with pdfplumber.open(uploaded_file) as pdf:
                         text = "\n".join(
@@ -35,7 +34,7 @@ with st.sidebar:
                 else:
                     text = uploaded_file.read().decode("utf-8", errors="ignore")
 
-                # ── Chunk ──
+                # Chunk 
                 words = text.split()
                 chunk_size, overlap = 100, 20
                 chunks, start = [], 0
@@ -46,18 +45,18 @@ with st.sidebar:
                         break
                     start += chunk_size - overlap
 
-                # ── Embed ──
+                # Embedding
                 embedder = SentenceTransformer("all-MiniLM-L6-v2")
                 embeddings = embedder.encode(
                     chunks, convert_to_numpy=True
                 ).astype(np.float32)
 
-                # ── FAISS index ──
+                # FAISS indexing
                 faiss.normalize_L2(embeddings)
                 index = faiss.IndexFlatIP(embeddings.shape[1])
                 index.add(embeddings)
 
-                # ── Save to session state ──
+                # Save to session state
                 st.session_state.chunks = chunks
                 st.session_state.index = index
                 st.session_state.embedder = embedder
@@ -71,7 +70,7 @@ with st.sidebar:
         st.session_state.chat_history = []
         st.rerun()
 
-# ── Chat UI ──
+# Chat User Interface
 if "ready" not in st.session_state:
     st.info("👈 Upload a document and click 'Build Knowledge Base' to start!")
 else:

@@ -1,18 +1,15 @@
-\# 🧠 RAG Chatbot — Ask Questions Over Your Documents
-
+\#  RAG Chatbot — Ask Questions Over Your Documents
 
 
 A RAG (Retrieval-Augmented Generation) chatbot that lets you upload PDFs or text files and ask questions about them. Built with FAISS, Sentence Transformers, Groq LLM, and Streamlit.
 
 
+\## Live Demo
 
-\## 🚀 Live Demo
-
-👉 https://rag-chatbot-fqffmmwjpv9xb3h4ulh4ug.streamlit.app
-
+https://rag-chatbot-mithilesh.streamlit.app/
 
 
-\## 🛠️ How It Works
+\##  How It Works
 
 1\. Upload a PDF or TXT file
 
@@ -48,7 +45,7 @@ Ask Question → Embed Question → Search FAISS → Send to LLM → Answer
 
 
 
-\## 🔧 Run Locally
+\##  Run Locally
 
 ```bash
 

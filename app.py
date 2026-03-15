@@ -14,7 +14,7 @@ st.caption("Upload a document and ask questions about it")
 # ── Sidebar ──
 with st.sidebar:
     st.header("⚙️ Setup")
-    api_key = st.text_input("Groq API Key", type="password", placeholder="gsk_...")
+    api_key = st.secrets["GROQ_API_KEY"]
     uploaded_file = st.file_uploader("Upload PDF or TXT", type=["pdf", "txt"])
     model_name = "llama-3.3-70b-versatile"
 
